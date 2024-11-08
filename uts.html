@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul Matematika siswa SMP</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        .container h1 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        .button-group button {
+            margin: 5px;
+            padding: 10px;
+            width: 100%;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        .button-group .calculate {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #2c9c28;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Modul Matematika siswa SMP</h1>
+
+        <div class="input-group">
+            <label for="tinggi">Tinggi</label>
+            <input type="number" id="tinggi" placeholder="Masukkan tinggi">
+        </div>
+
+        <div class="input-group">
+            <label for="jari-jari">Jari-jari</label>
+            <input type="number" id="jari-jari" placeholder="Masukkan jari-jari">
+        </div>
+
+        <div class="button-group">
+            <button class="calculate" onclick="calculate('lingkaran')">Hitung Luas Lingkaran</button>
+            <button class="calculate" onclick="calculate('persegiPanjang')">Hitung Luas Persegi Panjang</button>
+            <button class="calculate" onclick="calculate('tabung')">Hitung Luas Permukaan Tabung</button>
+        </div>
+
+        <div class="result" id="result">
+            <!-- Hasil perhitungan muncul di sini -->
+        </div>
+    </div>
+
+    <script>
+        function calculate(type) {
+            const tinggi = parseFloat(document.getElementById('tinggi').value);
+            const jariJari = parseFloat(document.getElementById('jari-jari').value);
+            let result = '';
+
+            switch(type) {
+                case 'lingkaran':       // rumus luas lingkaran
+                    if (jariJari > 0) {
+                        result = `Luas Lingkaran: ${(Math.PI * jariJari * jariJari).toFixed(2)}`;
+                    } else {
+                        result = "Masukkan jari-jari yang valid!";
+                    }
+                    break;
+                case 'persegiPanjang':      // rumus luas persegi panjang
+                    if (tinggi > 0 && jariJari > 0) {
+                        result = `Luas Persegi Panjang: ${(2 * Math.PI * jariJari * tinggi).toFixed(2)}`;
+                    } else {
+                        result = "Masukkan tinggi dan jari-jari yang valid!";
+                    }
+                    break;
+                case 'tabung':          // rumus luas permukaan tabung
+                    if (tinggi > 0 && jariJari > 0) {
+                        result = `Luas Permukaan Tabung: ${(2 * Math.PI * jariJari * (jariJari + tinggi)).toFixed(2)}`;
+                    } else {
+                        result = "Masukkan tinggi dan jari-jari yang valid!";
+                    }
+                    break;
+                default:
+                    result = "Pilihan tidak valid!";
+            }
+
+            document.getElementById('result').innerText = result;
+        }
+    </script>
+</body>
+</html>
